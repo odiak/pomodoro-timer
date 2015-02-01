@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <h1>Pomodoro Timer</h1>
+    <p class="remaining-time" v-text="remainingTime | time"></p>
+
+    <div class="buttons">
+      <button
+        v-on="click: startPomodoro()"
+        v-if="status == 'stopped'"
+      >start</button>
+
+      <button
+        v-on="click: startBreak()"
+        v-if="status == 'stopped'"
+      >start break</button>
+
+      <button
+        v-on="click: startLongBreak()"
+        v-if="status == 'stopped'"
+      >start long break</button>
+
+      <button
+        v-on="click: startTimer(1)"
+        v-if="status == 'stopped'"
+      >test</button>
+
+      <button
+        v-on="click: stopTimer()"
+        v-if="status == 'started'"
+      >stop</button>
+    </div>
+
+    <script src="/vue.min.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
