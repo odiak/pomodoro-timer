@@ -81,8 +81,14 @@
   }
   Vue.filter('dateTime', formatDateTime);
 
+  window.addEventListener('beforeunload', function(event) {
+    if (app && app.status === 'started') {
+      event.returnValue = 'Timer is running.';
+    }
+  });
 
-  new Vue({
+
+  var app = new Vue({
     el: 'html',
     data: {
       status: 'stopped',
@@ -157,6 +163,15 @@
       startLongBreak: function() {
         this.currentType = 'long break';
         this.startTimer(15);
+      },
+      startCustomTimer: function() {
+        var m = parseInt(prompt('input minutes'));
+        if (!isFinite(m)) {
+          alert('Invalid number');
+          return;
+        }
+        this.currentType = 'custom (' + m + 'm)';
+        this.startTimer(m);
       },
       addLog: function(message) {
         this.logs.unshift({timestamp: Date.now(), message: message});
