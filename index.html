@@ -36,6 +36,17 @@
       >stop</button>
     </div>
 
+    <br>
+
+    <h2>Work Log</h2>
+
+    <button v-on="click: clearLogs()">clear</button>
+
+    <div class="logs">
+      <div class="log" v-repeat="log: logs"
+        >{{log.timestamp | dateTime}} - {{log.message}}</div>
+    </div>
+
     <script src="/vue.min.js"></script>
     <script src="/app.js"></script>
   </body>
